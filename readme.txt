@@ -3,7 +3,7 @@ Contributors: MarcDK
 Tags: marctv, twitch, status
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 1.1
+Stable tag: 1.2
 
 == Description ==
 
@@ -17,7 +17,7 @@ Adds an "Live!" item to the primary menu if the selected twitch tv channel is ac
 
 == Changelog ==
 
-= 1.1 =
+= 1.2 =
 
 Fixed readme naming.
 
