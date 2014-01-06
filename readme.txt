@@ -1,4 +1,4 @@
-=== MarcTV Video Embed ===
+=== MarcTV TTwitch Status ===
 Contributors: MarcDK
 Tags: marctv, twitch, status
 Requires at least: 3.0
