@@ -3,7 +3,7 @@ Contributors: MarcDK
 Tags: marctv, twitch, status
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 1.2.1
+Stable tag: 1.3
 
 == Description ==
 
@@ -16,6 +16,10 @@ Adds an "Live!" item to the primary menu if the selected twitch tv channel is ac
 * Change the Twitch tv channelname and the url where the menu item should link to to your needs. 
 
 == Changelog ==
+
+= 1.3 = 
+
+* Fixed enqueue_scripts debug message.
 
 = 1.2.1 =
 

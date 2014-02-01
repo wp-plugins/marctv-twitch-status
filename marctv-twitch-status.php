@@ -3,12 +3,13 @@
   Plugin Name: MarcTV Twitch Status
   Plugin URI: http://www.marctv.de/blog/marctv-wordpress-plugins/
   Description: Add your Twitch Status to your navigation menu.
-  Version: 1.2.1
+  Version: 1.3
   Author: Marc Tönsing
   Author URI: http://www.marctv.de
   License: GPL2
  */
-if (!is_admin() && get_option('mtw_channelname') && get_option('mtw_url')) {
+
+function add_marctv_twitch_scripts() {
   wp_enqueue_style(
       "jquery.twitch_status", WP_PLUGIN_URL . "/marctv-twitch-status/jquery.marctv-twitch-status.css", false, "1.0");
 
@@ -29,8 +30,6 @@ function marctv_twitch_menu() {
 }
 
 add_action('admin_menu', 'marctv_twitch_menu');
-
-
 
 function marctv_twitch_status_settings() {
 
@@ -106,5 +105,11 @@ function marctv_twitch_status_settings() {
 
     </form>
   </div>
-<?php }
+<?php
+}
+
+if (!is_admin() && get_option('mtw_channelname') && get_option('mtw_url')) {
+  add_action('wp_print_styles', 'add_marctv_twitch_scripts');
+}
+
 ?>
