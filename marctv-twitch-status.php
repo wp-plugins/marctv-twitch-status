@@ -3,12 +3,13 @@
   Plugin Name: MarcTV Twitch Status
   Plugin URI: http://www.marctv.de/blog/marctv-wordpress-plugins/
   Description: Add your Twitch Status to your navigation menu.
-  Version: 1.0
+  Version: 1.3.1
   Author: Marc Tönsing
   Author URI: http://www.marctv.de
   License: GPL2
  */
-if (!is_admin() && get_option('mtw_channelname') && get_option('mtw_url')) {
+
+function add_marctv_twitch_scripts() {
   wp_enqueue_style(
       "jquery.twitch_status", WP_PLUGIN_URL . "/marctv-twitch-status/jquery.marctv-twitch-status.css", false, "1.0");
 
@@ -25,12 +26,14 @@ if (!is_admin() && get_option('mtw_channelname') && get_option('mtw_url')) {
 }
 
 function marctv_twitch_menu() {
-  add_menu_page('Twitch Status', 'Twitch Status', 'manage_options', 'twitch-status-options', marctv_twitch_status_settings);
+  add_options_page('Twitch Status', 'Twitch Status', 'manage_options', 'twitch-status-options', marctv_twitch_status_settings());
 }
 
 add_action('admin_menu', 'marctv_twitch_menu');
 
 function marctv_twitch_status_settings() {
+
+  load_plugin_textdomain('marctv-twitch-status', false, basename(dirname(__FILE__)) . '/languages');
 
   if (isset($_POST['formset'])) {
     $formset = $_POST['formset'];
@@ -51,13 +54,13 @@ function marctv_twitch_status_settings() {
   }
 
   if (!get_option('mtw_selector')) {
-    update_option('mtw_selector', 'nav:first ul');
+    update_option('mtw_selector', 'nav:first ul, #primary-navigation ul, .site-navigation ul');
   }
-  
+
   if (!get_option('mtw_channelname')) {
     update_option('mtw_channelname', 'marctvde');
   }
-  
+
   if (!get_option('mtw_url')) {
     update_option('mtw_url', 'http://twitch.tv/marctvde');
   }
@@ -69,10 +72,9 @@ function marctv_twitch_status_settings() {
   ?>
 
   <div id="wrap">
-    <h1>Twitch Account Settings</h1>
+    <h1><?php _e('Twitch Status Settings', 'marctv-twitch'); ?></h1>
     <div class="twitch-welcome">
-      <p><?php _e('This is where you can configure Twitch TV Account settings.', 'twitchaccount') ?>
-      </p>
+      <p><?php _e('Configure Twitch TV Account settings.', 'marctv-twitch'); ?></p>
     </div>
 
     <form method="post" enctype="multipart/form-data" name="twitchform" id="twitchform">
@@ -82,26 +84,32 @@ function marctv_twitch_status_settings() {
           <tr valign="top">
             <th scope="row"><label for="mtwchannelname">Twitch Channelname</label></th>
             <td><input name="mtwchannelname" type="text" id="mtwchannelname" value="<?php echo $channelname; ?>" class="regular-text">
-              <p class="description">The Twitch TV Account name for the navigation item</p></td>
+              <p class="description"><?php _e('The Twitch.TV channelname of the navigation menu item.', 'marctv-twitch'); ?></p></td>
           </tr>
 
           <tr valign="top">
             <th scope="row"><label for="mtw_url">Link URL</label></th>
             <td><input name="mtwurl" type="url" id="mtwurl" value="<?php echo $url; ?>" class="regular-text">
-              <p class="description">The URL for the link in the navigation menu.</p></td>
+              <p class="description"><?php _e('The URL of the navigation menu item. This is where the users will end up after they clicked on the link.', 'marctv-twitch'); ?></p></td>
           </tr>
 
           <tr valign="top">
-            <th scope="row"><label for="mtw_selector">Link URL</label></th>
+            <th scope="row"><label for="mtw_selector">jQuery selector</label></th>
             <td><input name="mtwselector" type="text" id="mtwselector" value="<?php echo $selector; ?>" class="regular-text">
-              <p class="description">The jQuery selector for the primary menu. Leave blank for default settings</p></td>
+              <p class="description"><?php _e('The jQuery selector of the primary menu. Leave blank for default settings.', 'marctv-twitch'); ?></p></td>
           </tr>
 
         </tbody></table>
       <input type="hidden" id="formset" name="formset" value="1"/>
-      <input type="submit" name="submit" value="Save Settings" class="button button-primary">
+      <input type="submit" name="submit" value="<?php _e('Save Settings', 'marctv-twitch'); ?>" class="button button-primary">
 
     </form>
   </div>
-<?php }
+<?php
+}
+
+if (!is_admin() && get_option('mtw_channelname') && get_option('mtw_url')) {
+  add_action('wp_print_styles', 'add_marctv_twitch_scripts');
+}
+
 ?>
