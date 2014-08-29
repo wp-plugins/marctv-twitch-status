@@ -1,4 +1,4 @@
-.twitch-status a:before { 
+.twitch-status a:before {
   content: '● ';
   color: red;
   -webkit-animation: blink 1s steps(5, start) 2;
