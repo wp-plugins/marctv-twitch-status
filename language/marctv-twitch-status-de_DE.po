@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MarcTV Twitch Status\n"
-"POT-Creation-Date: 2014-09-11 10:28+0100\n"
-"PO-Revision-Date: 2014-09-11 10:30+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2014-12-04 12:32+0100\n"
+"PO-Revision-Date: 2014-12-04 12:33+0100\n"
+"Last-Translator: Marc Tönsing <marc@marctv.de>\n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -18,34 +18,52 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: marctv-twitch-status.php:51
-msgid "Options saved."
-msgstr "Einstellungen gespeichert."
+#: pages/settings.php:3
+msgid "Cheatin&#8217; uh?"
+msgstr ""
 
-#: marctv-twitch-status.php:75
+#: pages/settings.php:13
 msgid "Twitch Status Settings"
 msgstr "Twitch Status Einstellungen"
 
-#: marctv-twitch-status.php:77
-msgid "Configure Twitch TV Account settings."
-msgstr "Konfiguriere die Twitch Einstellungen"
+#: pages/settings.php:25
+msgid "Twitch Channel"
+msgstr "Twitch Kanal"
 
-#: marctv-twitch-status.php:87
+#: pages/settings.php:28
 msgid "The Twitch.TV channelname of the navigation menu item."
 msgstr "Twitch.TV Kanalname, der in der Navigation auftaucht. "
 
-#: marctv-twitch-status.php:93
+#: pages/settings.php:36
 msgid ""
 "The URL of the navigation menu item. This is where the users will end up "
 "after they clicked on the link."
 msgstr "URL, mit der der Menüpunkt in der Navigation verlinkt werden soll."
 
-#: marctv-twitch-status.php:99
+#: pages/settings.php:44
 msgid ""
 "The jQuery selector of the primary menu. Leave blank for default settings."
 msgstr ""
 "Der jQuery Selector im Hauptmenü. Bitte freilassen für Standardeinstellungen."
 
-#: marctv-twitch-status.php:104
-msgid "Save Settings"
-msgstr "Einstellungen speichern. "
+#: pages/settings.php:52
+#, php-format
+msgid "Twitch Channel %s is currently offline."
+msgstr "Der Twitch Kanal %s is gerade offline."
+
+#: pages/settings.php:56
+msgid ""
+"Here appears the appended menu item if your twitch channel is actively "
+"broadcasting."
+msgstr ""
+"Hier erscheint der Live! Menüeintrag zum testen, wenn der Kanal am streamen "
+"ist. "
+
+#~ msgid "Options saved."
+#~ msgstr "Einstellungen gespeichert."
+
+#~ msgid "Configure Twitch TV Account settings."
+#~ msgstr "Konfiguriere die Twitch Einstellungen"
+
+#~ msgid "Save Settings"
+#~ msgstr "Einstellungen speichern. "

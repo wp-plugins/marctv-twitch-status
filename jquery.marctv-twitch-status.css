@@ -16,3 +16,7 @@
         visibility: hidden;
     }
 }
+
+#mtvchannelstatus {
+    margin: 0;
+}
