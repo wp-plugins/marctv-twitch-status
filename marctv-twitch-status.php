@@ -1,117 +1,105 @@
 <?php
+
 /*
   Plugin Name: MarcTV Twitch Status
   Plugin URI: http://www.marctv.de/blog/marctv-wordpress-plugins/
   Description: Add your Twitch Status to your navigation menu.
-  Version: 1.4.3
+  Version: 1.5.2
   Author: MarcDK
   Author URI: http://www.marctv.de
   License: GPL2
  */
 
-function add_marctv_twitch_scripts() {
-  wp_enqueue_style(
-      "jquery.twitch_status", WP_PLUGIN_URL . "/marctv-twitch-status/jquery.marctv-twitch-status.css", false, "1.0");
 
-  wp_enqueue_script(
-      "jquery.twitch_status", WP_PLUGIN_URL . "/marctv-twitch-status/jquery.marctv-twitch-status.js", array("jquery"), "1.0", 0);
+class MarcTVTwitch
+{
 
-  $params = array(
-    'channelname' => get_option('mtw_channelname'),
-    'url' => get_option('mtw_url'),
-    'selector' => get_option('mtw_selector')
-  );
+    private $version = '1.5.2';
+    private $pluginPrefix = 'marctv-twitch';
+    private $channelname = 'marctvde';
+    private $channelurl = 'http://twitch.tv/marctvde';
+    private $menuselector = 'nav:first ul:first, #primary-navigation ul:first, .site-navigation ul:first';
 
-  wp_localize_script('jquery.twitch_status', 'marctvtwitchsettings', $params);
-}
+    public function __construct()
+    {
+        load_plugin_textdomain('marctv-twitch-status', false, dirname(plugin_basename(__FILE__)) . '/language/');
 
-function marctv_twitch_menu() {
-  add_options_page('Twitch Status', 'Twitch Status', 'manage_options', 'twitch-status-options', 'marctv_twitch_status_settings');
-}
+        if (is_admin()) {
+            $this->backendInit();
+        }
 
-function marctv_twitch_status_settings() {
+        $this->frontendInit();
+    }
 
-  if (isset($_POST['formset'])) {
-    $formset = $_POST['formset'];
-  }
-  else {
-    $formset = "";
-  }
+    /**
+     * Actions for backend.
+     */
+    public function backendInit()
+    {
+        add_action('admin_enqueue_scripts', array($this, 'enqueScripts'));
+        add_action('admin_menu', array($this, 'registerSettingsPage'));
+        add_action('admin_init', array($this, 'registerSettings'));
+    }
 
-  if ($formset == "1") {  //our form has been submitted let's save the values
-    update_option('mtw_channelname', $_POST['mtwchannelname']);
-    update_option('mtw_url', $_POST['mtwurl']);
-    update_option('mtw_selector', $_POST['mtwselector']);
-    ?>
-    <div class="updated">
-      <p><strong><?php _e('Options saved.', 'marctv-twitch-status'); ?></strong></p>
-    </div>
-    <?php
-  }
+    public function frontendInit()
+    {
+        add_action('wp_print_styles', array($this, 'enqueScripts'));
 
-  if (!get_option('mtw_selector')) {
-    update_option('mtw_selector', 'nav:first ul, #primary-navigation ul, .site-navigation ul');
-  }
+    }
 
-  if (!get_option('mtw_channelname')) {
-    update_option('mtw_channelname', 'marctvde');
-  }
+    /**
+     * Registers settings for plugin.
+     */
+    public function registerSettings()
+    {
+        register_setting($this->pluginPrefix . '-settings-group', $this->pluginPrefix . '-channelname');
+        register_setting($this->pluginPrefix . '-settings-group', $this->pluginPrefix . '-channelurl');
+        register_setting($this->pluginPrefix . '-settings-group', $this->pluginPrefix . '-menuselector');
 
-  if (!get_option('mtw_url')) {
-    update_option('mtw_url', 'http://twitch.tv/marctvde');
-  }
+    }
 
-  $channelname = get_option('mtw_channelname');
-  $url = get_option('mtw_url');
-  $selector = get_option('mtw_selector');
-  ?>
+    /**
+     * Add a menu item to the admin bar.
+     */
+    public function registerSettingsPage()
+    {
+        add_options_page('Twitch Status', 'Twitch Status', 'manage_options', $this->pluginPrefix, array($this, 'showSettingsPage'));
+    }
 
-  <div id="wrap">
-    <h1><?php _e('Twitch Status Settings', 'marctv-twitch-status'); ?></h1>
-    <div class="twitch-welcome">
-      <p><?php echo __('Configure Twitch TV Account settings.', 'marctv-twitch-status'); ?></p>
-    </div>
+    /**
+     * Includes the settings page.
+     */
+    public function showSettingsPage()
+    {
+        include('pages/settings.php');
+    }
 
-    <form method="post" enctype="multipart/form-data" name="twitchform" id="twitchform">
 
-      <table class="form-table">
-        <tbody>
-          <tr valign="top">
-            <th scope="row"><label for="mtwchannelname"><?php _e('Twitch Channel', 'marctv-twitch-status'); ?></label></th>
-            <td><input name="mtwchannelname" type="text" id="mtwchannelname" value="<?php echo $channelname; ?>" class="regular-text">
-              <p class="description"><?php _e('The Twitch.TV channelname of the navigation menu item.', 'marctv-twitch-status'); ?></p></td>
-          </tr>
+    public function enqueScripts()
+    {
+        wp_enqueue_style(
+            $this->pluginPrefix . '-styles', WP_PLUGIN_URL . "/marctv-twitch-status/jquery.marctv-twitch-status.css", false, $this->version);
 
-          <tr valign="top">
-            <th scope="row"><label for="mtw_url">Link URL</label></th>
-            <td><input name="mtwurl" type="url" id="mtwurl" value="<?php echo $url; ?>" class="regular-text">
-              <p class="description"><?php _e('The URL of the navigation menu item. This is where the users will end up after they clicked on the link.', 'marctv-twitch-status'); ?></p></td>
-          </tr>
+        wp_enqueue_script(
+            $this->pluginPrefix, WP_PLUGIN_URL . "/marctv-twitch-status/jquery.marctv-twitch-status.js", array("jquery"), $this->version, 0);
 
-          <tr valign="top">
-            <th scope="row"><label for="mtw_selector">jQuery selector</label></th>
-            <td><input name="mtwselector" type="text" id="mtwselector" value="<?php echo $selector; ?>" class="regular-text">
-              <p class="description"><?php _e('The jQuery selector of the primary menu. Leave blank for default settings.', 'marctv-twitch-status'); ?></p></td>
-          </tr>
+        /* populate option fields with defaults and open them for jQuery to read. */
 
-        </tbody></table>
-      <input type="hidden" id="formset" name="formset" value="1"/>
-      <input type="submit" name="submit" value="<?php _e('Save Settings', 'marctv-twitch-status'); ?>" class="button button-primary">
+        $params = array(
+            'channelname' => get_option($this->pluginPrefix . '-channelname', $this->channelname),
+            'channelurl' => get_option($this->pluginPrefix . '-channelurl', $this->channelurl),
+            'menuselector' => get_option($this->pluginPrefix . '-menuselector', $this->menuselector)
+        );
 
-    </form>
-  </div>
-  <?php
-}
+        if (is_admin()) {
+            $params['menuselector'] = '#mtvchannelstatus';
+        }
 
-function marctv_twitch_load_textdomain() {
-  load_plugin_textdomain( 'marctv-twitch-status', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
-}
+        wp_localize_script($this->pluginPrefix, 'marctvtwitchsettings', $params);
 
-if (!is_admin() && get_option('mtw_channelname') && get_option('mtw_url')) {
-  add_action('wp_print_styles', 'add_marctv_twitch_scripts');
-}
+    }
+};
 
-add_action('admin_menu', 'marctv_twitch_menu');
+new MarcTVTwitch;
 
-add_action( 'plugins_loaded', 'marctv_twitch_load_textdomain' );
 ?>

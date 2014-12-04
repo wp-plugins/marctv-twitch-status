@@ -1,9 +1,9 @@
-=== MarcTV Twitch Status ===
+=== MarcTV Twitch Menu Status ===
 Contributors: MarcDK
 Tags: marctv, twitch, status
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 1.4.3
+Stable tag: 1.5.2
 
 == Description ==
 
@@ -13,9 +13,19 @@ Adds an "Live!" item to the primary menu if the selected twitch tv channel is ac
 
 * Install plugin
 * Activate it
-* Change the Twitch tv channelname and the url where the menu item should link to to your needs. 
+* In the settings change the Twitch channelname and the url where the menu item should link to according to your needs.
 
 == Changelog ==
+
+= 1.5.2 =
+
+Added Screenshots.
+
+= 1.5 =
+
+ * Menu item is no longer appended to submenu items by default. This may break compatibility for some people.
+ * Plugin rewritten in OO PHP5.
+ * German translation updated.
 
 = 1.4.2 =
 
@@ -57,6 +67,12 @@ Fixed readme naming.
 = 1.0 =
 
 First version.
+
+== Screenshots ==
+
+1. The plugin in action.
+
+2. The settings page.
 
 
 
