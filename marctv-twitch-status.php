@@ -1,4 +1,5 @@
 <?php
+
 /*
   Plugin Name: MarcTV Twitch Status
   Plugin URI: http://www.marctv.de/blog/marctv-wordpress-plugins/
@@ -13,7 +14,7 @@
 class MarcTVTwitch
 {
 
-    private $version = '1.5';
+    private $version = '1.5.2';
     private $pluginPrefix = 'marctv-twitch';
     private $channelname = 'marctvde';
     private $channelurl = 'http://twitch.tv/marctvde';
@@ -74,8 +75,8 @@ class MarcTVTwitch
     }
 
 
-    public function enqueScripts() {
-
+    public function enqueScripts()
+    {
         wp_enqueue_style(
             $this->pluginPrefix . '-styles', WP_PLUGIN_URL . "/marctv-twitch-status/jquery.marctv-twitch-status.css", false, $this->version);
 
@@ -87,7 +88,7 @@ class MarcTVTwitch
         $params = array(
             'channelname' => get_option($this->pluginPrefix . '-channelname', $this->channelname),
             'channelurl' => get_option($this->pluginPrefix . '-channelurl', $this->channelurl),
-            'menuselector' => get_option($this->pluginPrefix . '-menuselector',$this->menuselector)
+            'menuselector' => get_option($this->pluginPrefix . '-menuselector', $this->menuselector)
         );
 
         if (is_admin()) {
@@ -100,6 +101,5 @@ class MarcTVTwitch
 };
 
 new MarcTVTwitch;
-
 
 ?>
