@@ -3,7 +3,7 @@ Contributors: MarcDK
 Tags: marctv, twitch, status
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 1.5
+Stable tag: 1.5.1
 
 == Description ==
 
@@ -16,6 +16,10 @@ Adds an "Live!" item to the primary menu if the selected twitch tv channel is ac
 * In the settings change the Twitch channelname and the url where the menu item should link to according to your needs.
 
 == Changelog ==
+
+= 1.5.1 =
+
+Added Screenshot.
 
 = 1.5 =
 
@@ -63,6 +67,10 @@ Fixed readme naming.
 = 1.0 =
 
 First version.
+
+== Screenshots ==
+
+1. The plugin in action.
 
 
 
