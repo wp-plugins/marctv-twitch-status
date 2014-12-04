@@ -30,6 +30,18 @@ if (get_option($this->pluginPrefix .  '-menuselector') == '') {
             </tr>
 
             <tr valign="top">
+                <th scope="row"><label for="mtw_status">Status</label></th>
+                <td>
+                    <ul id="mtvchannelstatus">
+                        <li class="offline"><?php printf(__('Twitch Channel %s is currently offline.','marctv-twitch-status'),
+                                '<strong>' . get_option($this->pluginPrefix .  '-channelname') . '</strong>')?>
+                        </li>
+                    </ul>
+                    <p class="description"><?php _e('Here appears the appended menu item if your twitch channel is actively broadcasting.', 'marctv-twitch-status'); ?></p>
+                </td>
+            </tr>
+
+            <tr valign="top">
                 <th scope="row"><label for="<?php echo $this->pluginPrefix; ?>-channelurl">Link URL</label></th>
                 <td><input name="<?php echo $this->pluginPrefix; ?>-channelurl" type="url" id="<?php echo $this->pluginPrefix; ?>-channelurl" value="<?php echo get_option($this->pluginPrefix .  '-channelurl', $this->channelurl); ?>" class="regular-text">
 
@@ -41,19 +53,7 @@ if (get_option($this->pluginPrefix .  '-menuselector') == '') {
                 <th scope="row"><label for="<?php echo $this->pluginPrefix; ?>-menuselector">jQuery selector</label></th>
                 <td><input name="<?php echo $this->pluginPrefix; ?>-menuselector" type="text" id="<?php echo $this->pluginPrefix; ?>-menuselector" value="<?php echo get_option($this->pluginPrefix .  '-menuselector', $this->menuselector); ?>" class="large-text">
 
-                    <p class="description"><?php _e('The jQuery selector of the primary menu. Leave blank for default settings.', 'marctv-twitch-status'); ?></p>
-                </td>
-            </tr>
-
-            <tr valign="top">
-                <th scope="row"><label for="mtw_status">Status</label></th>
-                <td>
-                    <ul id="mtvchannelstatus">
-                        <li class="offline"><?php printf(__('Twitch Channel %s is currently offline.','marctv-twitch-status'),
-                            '<strong>' . get_option($this->pluginPrefix .  '-channelname') . '</strong>')?>
-                        </li>
-                    </ul>
-                    <p class="description"><?php _e('Here appears the appended menu item if your twitch channel is actively broadcasting.', 'marctv-twitch-status'); ?></p>
+                    <p class="description"><?php _e('The jQuery selector of the primary menu. This should point to the unordered list in the navigation menu. Leave empty for default settings.', 'marctv-twitch-status'); ?> <a target="_blank" href="http://api.jquery.com/category/selectors/"><?php _e('What is this?', 'marctv-twitch-status'); ?></a></p>
                 </td>
             </tr>
 
