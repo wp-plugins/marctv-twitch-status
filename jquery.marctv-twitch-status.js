@@ -2,7 +2,8 @@
   $(document).ready(function($) {
     $.getJSON('https://api.twitch.tv/kraken/streams/' + marctvtwitchsettings.channelname + '?callback=?', function(a) {
       if (a.stream) {
-        $(marctvtwitchsettings.selector).append('<li class="twitch-status menu-item"><a target="_blank" title="' + a.stream.viewers + ' viewers" href="' + marctvtwitchsettings.url + '">Live!</a></li>');
+        $(marctvtwitchsettings.menuselector).append('<li class="twitch-status menu-item"><a class="twitch-link" target="_blank" title="' + a.stream.viewers + ' viewers" href="' + marctvtwitchsettings.channelurl + '">Live!</a></li>');
+        $('.offline', marctvtwitchsettings.menuselector).hide();
       }
     });
   });
