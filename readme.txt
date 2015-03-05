@@ -3,7 +3,7 @@ Contributors: MarcDK
 Tags: marctv, twitch, status
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.7
+Stable tag: 1.7.1
 
 == Description ==
 
@@ -17,6 +17,9 @@ Adds an "Live!" menu item to the primary navigation if the selected twitch tv ch
 
 == Changelog ==
 
+
+= 1.7.1 =
+* Translation fixed.
 
 = 1.7 =
 * Added option to display game title and screenshot on menu item hover. Disabled by default. (via Alesio)
