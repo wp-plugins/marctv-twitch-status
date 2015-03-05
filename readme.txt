@@ -7,7 +7,7 @@ Stable tag: 1.6.1
 
 == Description ==
 
-Adds an "Live!" item to the primary menu if the selected twitch tv channel is actively broadcasting. 
+Adds an "Live!" menu item to the primary navigation if the selected twitch tv channel is actively broadcasting.
 
 == Installation ==
 
