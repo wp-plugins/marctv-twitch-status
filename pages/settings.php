@@ -30,7 +30,7 @@ if (get_option($this->pluginPrefix .  '-menuselector') == '') {
             </tr>
 
             <tr valign="top">
-                <th scope="row"><label for="<?php echo $this->pluginPrefix; ?>-showmeta"><?php echo __('Show meta', $this->pluginPrefix); ?></label></th>
+                <th scope="row"><label for="<?php echo $this->pluginPrefix; ?>-showmeta"><?php echo __('Show meta', $this->pluginPrefix,'marctv-twitch-status'); ?></label></th>
                 <td>
                     <input
                             id="<?php echo $this->pluginPrefix . '-showmeta'; ?>"
