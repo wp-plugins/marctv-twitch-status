@@ -1,8 +1,33 @@
-.twitch-status a:before {
+.twitch-status > a:before {
   content: '● ';
   color: red;
   -webkit-animation: blink 1s steps(5, start) 2;
   animation: blink 1s steps(5, start) 2;
+}
+
+.twitch-meta img {
+    padding: 0.5em
+    width: 240px;
+}
+
+#navigation #twitch-status .sub-menu,
+#navigation #twitch-status .sub-menu a,
+#twitch-status .sub-menu {
+    background: white;
+    background-color: white;
+}
+
+#navigation #twitch-status .sub-menu{
+    width: 240px;
+}
+
+#navigation #twitch-status p {
+    margin-bottom: 0.5em;
+    font-size: 14px;
+}
+
+.twitch-meta p {
+    color: #333
 }
 
 @-webkit-keyframes blink {

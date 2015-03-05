@@ -4,7 +4,7 @@
   Plugin Name: MarcTV Twitch Status
   Plugin URI: http://www.marctv.de/blog/marctv-wordpress-plugins/
   Description: Add your Twitch Status to your navigation menu.
-  Version: 1.6.1
+  Version: 1.7
   Author: MarcDK
   Author URI: http://www.marctv.de
   License: GPL2
@@ -17,6 +17,7 @@ class MarcTVTwitch
     private $version = '1.6.1';
     private $pluginPrefix = 'marctv-twitch';
     private $channelname = 'marctvde';
+    private $showmeta = false;
     private $channelurl = 'http://twitch.tv/marctvde';
     private $menuselector = 'nav:first ul:first, #primary-navigation ul:first, .site-navigation ul:first';
 
@@ -55,6 +56,7 @@ class MarcTVTwitch
         register_setting($this->pluginPrefix . '-settings-group', $this->pluginPrefix . '-channelname');
         register_setting($this->pluginPrefix . '-settings-group', $this->pluginPrefix . '-channelurl');
         register_setting($this->pluginPrefix . '-settings-group', $this->pluginPrefix . '-menuselector');
+        register_setting($this->pluginPrefix . '-settings-group', $this->pluginPrefix . '-showmeta');
 
     }
 
@@ -88,7 +90,8 @@ class MarcTVTwitch
         $params = array(
             'channelname' => get_option($this->pluginPrefix . '-channelname', $this->channelname),
             'channelurl' => get_option($this->pluginPrefix . '-channelurl', $this->channelurl),
-            'menuselector' => get_option($this->pluginPrefix . '-menuselector', $this->menuselector)
+            'menuselector' => get_option($this->pluginPrefix . '-menuselector', $this->menuselector),
+            'showmeta' => get_option($this->pluginPrefix . '-showmeta', $this->showmeta)
         );
 
         if (is_admin()) {
