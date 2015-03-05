@@ -36,7 +36,7 @@ if (get_option($this->pluginPrefix .  '-menuselector') == '') {
                             id="<?php echo $this->pluginPrefix . '-showmeta'; ?>"
                             name="<?php echo $this->pluginPrefix . '-showmeta'; ?>"
                             type="checkbox" <?php checked(get_option($this->pluginPrefix . '-showmeta'), 'on') ?> />
-                        <?php echo __('Show meta information below item', $this->pluginPrefix); ?>
+                        <?php echo __('Show preview image and game title on hover.', $this->pluginPrefix); ?>
                 </td>
             </tr>
 
