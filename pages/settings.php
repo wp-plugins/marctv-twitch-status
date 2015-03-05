@@ -30,13 +30,13 @@ if (get_option($this->pluginPrefix .  '-menuselector') == '') {
             </tr>
 
             <tr valign="top">
-                <th scope="row"><label for="<?php echo $this->pluginPrefix; ?>-showmeta"><?php echo __('Show meta', $this->pluginPrefix,'marctv-twitch-status'); ?></label></th>
+                <th scope="row"><label for="<?php echo $this->pluginPrefix; ?>-showmeta"><?php echo __('Show meta', 'marctv-twitch-status'); ?></label></th>
                 <td>
                     <input
                             id="<?php echo $this->pluginPrefix . '-showmeta'; ?>"
                             name="<?php echo $this->pluginPrefix . '-showmeta'; ?>"
                             type="checkbox" <?php checked(get_option($this->pluginPrefix . '-showmeta'), 'on') ?> />
-                        <?php echo __('Show preview image and game title on hover.', $this->pluginPrefix); ?>
+                        <?php echo __('Show preview image and game title on hover.', 'marctv-twitch-status'); ?>
                 </td>
             </tr>
 
