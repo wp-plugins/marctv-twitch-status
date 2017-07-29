@@ -17,6 +17,14 @@
                 submenu +
                 '</li>');
                 $('.offline', marctvtwitchsettings.menuselector).hide();
+                
+                //triggering an event that can be subscribed to.
+                $(window).trigger("MarcTV_Twitch_Loaded", [
+                    marctvtwitchsettings.channelurl,
+                    marctvtwitchsettings.showmeta,
+                    a.stream.viewers,
+                    a.stream.game
+                ]);
             }
         });
     });
